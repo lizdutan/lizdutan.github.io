@@ -1,0 +1,240 @@
+[
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code with no space in the folder name.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/starwars2/starwars2.html",
+    "href": "posts/starwars2/starwars2.html",
+    "title": "Starwars",
+    "section": "",
+    "text": "Let’s analyze the starwars data:"
+  },
+  {
+    "objectID": "posts/starwars2/starwars2.html#variable-description-for-starwars-data.frame",
+    "href": "posts/starwars2/starwars2.html#variable-description-for-starwars-data.frame",
+    "title": "Starwars",
+    "section": "Variable Description for starwars data.frame",
+    "text": "Variable Description for starwars data.frame\nThe following describes the variables in the starwars data.frame.\n\nfilms List of films the character appeared in\nname Name of the character\nspecies Name of species\nheight Height (cm)\nmass Weight (kg)\nhair_color, skin_color, eye_color Hair, skin, and eye colors\nbirth_year Year born (BBY = Before Battle of Yavin)\nsex The biological sex of the character, namely male, female, hermaphroditic, or none (as in the case for Droids).\ngender The gender role or gender identity of the character as determined by their personality or the way they were programmed (as in the case for Droids).\nhomeworld Name of homeworld"
+  },
+  {
+    "objectID": "posts/starwars2/starwars2.html#human-vs.-droid",
+    "href": "posts/starwars2/starwars2.html#human-vs.-droid",
+    "title": "Starwars",
+    "section": "Human vs. Droid",
+    "text": "Human vs. Droid\n\nggplot(data = \n         starwars %>% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/starwars/starwars_df.html",
+    "href": "posts/starwars/starwars_df.html",
+    "title": "Starwars",
+    "section": "",
+    "text": "Let’s analyze the starwars data:"
+  },
+  {
+    "objectID": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
+    "href": "posts/starwars/starwars_df.html#variable-description-for-starwars-data.frame",
+    "title": "Starwars",
+    "section": "Variable Description for starwars data.frame",
+    "text": "Variable Description for starwars data.frame\nThe following describes the variables in the starwars data.frame.\n\nfilms List of films the character appeared in\nname Name of the character\nspecies Name of species\nheight Height (cm)\nmass Weight (kg)\nhair_color, skin_color, eye_color Hair, skin, and eye colors\nbirth_year Year born (BBY = Before Battle of Yavin)\nsex The biological sex of the character, namely male, female, hermaphroditic, or none (as in the case for Droids).\ngender The gender role or gender identity of the character as determined by their personality or the way they were programmed (as in the case for Droids).\nhomeworld Name of homeworld"
+  },
+  {
+    "objectID": "posts/starwars/starwars_df.html#human-vs.-droid",
+    "href": "posts/starwars/starwars_df.html#human-vs.-droid",
+    "title": "Starwars",
+    "section": "Human vs. Droid",
+    "text": "Human vs. Droid\n\nggplot(data = \n         starwars %>% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html",
+    "href": "posts/beer-markets/beer-markets.html",
+    "title": "Beer Markets",
+    "section": "",
+    "text": "Let’s analyze the beer_data data:"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#variable-description-for-beer_data-data.frame",
+    "href": "posts/beer-markets/beer-markets.html#variable-description-for-beer_data-data.frame",
+    "title": "Beer Markets",
+    "section": "Variable Description for beer_data data.frame",
+    "text": "Variable Description for beer_data data.frame\nThe following describes the variables in the beer_data data.frame.\n\nhh: Household identifier\n_purchase_desc: Description of the purchase\nquantity: The quantity of beer purchased\nbrand: The brand of beer\ndollar_spent: The amount spent\nbeer_floz: Fluid ounces of beer\nprice_per_floz: Price per fluid ounce\ncontainer: Type of container\npromo: Whether the purchase was on promotion\nmarket: The market where the purchase was made\nDemographics: age, employment status, degree, class of worker (cow), race, and household information like microwave, dishwasher, tvcable, singlefamilyhome, and npeople (number of people in the household)"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#purchase-patterns",
+    "href": "posts/beer-markets/beer-markets.html#purchase-patterns",
+    "title": "Beer Markets",
+    "section": "Purchase Patterns",
+    "text": "Purchase Patterns\nWe’ll explore the purchase patterns in the dataset. This includes understanding the most popular brands, the average quantity purchased, and spending habits across different markets. Here are some specific analyses we can perform:\n\nCalculate the total quantity and spending for each brand.\nFind the average quantity purchased and average spending per purchase.\nCompare the total spending across different markets.\n\nI’ll begin with these analyses and create visualizations to help us understand the data better. Let’s start by calculating the total quantity and spending for each brand.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Reading the CSV file\nbeer_data = pd.read_csv(\"https://bcdanl.github.io/data/beer_markets.csv\")\n\n# Setting up the visualisation settings\nsns.set(style=\"whitegrid\")\n\n# Calculate total quantity and spending for each brand\nbrand_summary = beer_data.groupby('brand').agg({'quantity':'sum', 'dollar_spent':'sum'}).reset_index()\n\n# Sort by total quantity and spending\nbrand_summary_sorted_quantity = brand_summary.sort_values('quantity', ascending=False)\nbrand_summary_sorted_spent = brand_summary.sort_values('dollar_spent', ascending=False)\n\n\n# Plotting total quantity for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='quantity', y='brand', data=brand_summary_sorted_quantity, palette='viridis')\nplt.title('Total Quantity of Beer Purchased by Brand')\nplt.xlabel('Total Quantity')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n# Plotting total spending for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='dollar_spent', y='brand', data=brand_summary_sorted_spent, palette='viridis')\nplt.title('Total Spending on Beer by Brand')\nplt.xlabel('Total Spending')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe bar charts above display the total quantity of beer purchased and the total spending by brand. From the looks of it, certain brands dominate in terms of quantity sold and total spending, indicating their popularity.\nNow, let’s calculate the average quantity purchased and average spending per purchase. For this, we’ll consider each row in the dataset as a separate purchase and compute the averages accordingly.\n\n# Calculate average quantity purchased and average spending per purchase\naverage_purchase = beer_data.groupby('brand').agg({\n    'quantity': 'mean', \n    'dollar_spent': 'mean'\n}).reset_index()\n\n# Sort by average quantity and average spending\naverage_purchase_sorted_quantity = average_purchase.sort_values('quantity', ascending=False)\naverage_purchase_sorted_spent = average_purchase.sort_values('dollar_spent', ascending=False)\n\n# Plotting average quantity for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='quantity', y='brand', data=average_purchase_sorted_quantity, palette='viridis')\nplt.title('Average Quantity of Beer Purchased by Brand')\nplt.xlabel('Average Quantity')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n# Plotting average spending for each brand\nplt.figure(figsize=(10, 8))\nsns.barplot(x='dollar_spent', y='brand', data=average_purchase_sorted_spent, palette='viridis')\nplt.title('Average Spending on Beer by Brand')\nplt.xlabel('Average Spending')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe visualizations above depict the average quantity of beer purchased per brand and the average spending per brand. This shows which brands tend to be bought in larger quantities on average and which brands tend to have higher spending per purchase, which could be indicative of their price point or the purchase of premium products.\nNext, we’ll look at the total spending across different markets to see if there are any notable differences in spending habits geographically. To do this, we’ll sum up the spending in each market and visualize it.\n\n# Calculate total spending in each market\nmarket_spending_summary = beer_data.groupby('market').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nmarket_spending_summary_sorted = market_spending_summary.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending in each market\nplt.figure(figsize=(12, 10))\nsns.barplot(x='dollar_spent', y='market', data=market_spending_summary_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Market')\nplt.xlabel('Total Spending')\nplt.ylabel('Market')\nplt.show()\n\n\n\n\nThe bar chart illustrates the total spending on beer by market, showcasing the differences in spending habits across various regions. Some markets have significantly higher spending, which could be due to a variety of factors including market size, consumer preferences, or economic factors.\nNow, let’s move on to the second analysis:"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#demographic-analysis",
+    "href": "posts/beer-markets/beer-markets.html#demographic-analysis",
+    "title": "Beer Markets",
+    "section": "Demographic Analysis",
+    "text": "Demographic Analysis\nWe will examine which demographics are buying what kind of beer and whether spending habits vary by demographics such as age, employment, and race. For this, we could look at:\n\nSpending by age group\nSpending by employment status\nSpending by race\n\nI’ll start by analyzing spending by age group.\n\n# Calculate total spending by age group\nage_group_spending = beer_data.groupby('age').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nage_group_spending_sorted = age_group_spending.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending by age group\nplt.figure(figsize=(10, 6))\nsns.barplot(x='dollar_spent', y='age', data=age_group_spending_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Age Group')\nplt.xlabel('Total Spending')\nplt.ylabel('Age Group')\nplt.show()\n\n\n\n\nThe bar chart demonstrates the total spending on beer segmented by age group, highlighting which age groups spend the most on beer. It appears that certain age groups are more dominant in beer spending, which may align with the purchasing power or preferences of those groups.\nNext, we will examine spending by employment status.\n\n# Calculate total spending by employment status\nemployment_spending = beer_data.groupby('employment').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nemployment_spending_sorted = employment_spending.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending by employment status\nplt.figure(figsize=(10, 6))\nsns.barplot(x='dollar_spent', y='employment', data=employment_spending_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Employment Status')\nplt.xlabel('Total Spending')\nplt.ylabel('Employment Status')\nplt.show()\n\n\n\n\nThe visualization shows the total spending on beer by employment status. We can see that certain employment groups, such as full-time workers, are spending more on beer, which might be related to their disposable income.\nFinally, let’s look at spending by race to complete the demographic analysis.\n\n# Calculate total spending by race\nrace_spending = beer_data.groupby('race').agg({'dollar_spent':'sum'}).reset_index()\n\n# Sort by total spending\nrace_spending_sorted = race_spending.sort_values('dollar_spent', ascending=False)\n\n# Plotting total spending by race\nplt.figure(figsize=(10, 6))\nsns.barplot(x='dollar_spent', y='race', data=race_spending_sorted, palette='viridis')\nplt.title('Total Spending on Beer by Race')\nplt.xlabel('Total Spending')\nplt.ylabel('Race')\nplt.show()\n\n\n\n\nThe bar chart above indicates the total spending on beer broken down by race, highlighting which racial groups account for the most beer spending within the dataset. This could reflect both the demographics of the regions where the data was collected and cultural preferences regarding beer.\nNow, let’s proceed to the third analysis:"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#price-sensitivity",
+    "href": "posts/beer-markets/beer-markets.html#price-sensitivity",
+    "title": "Beer Markets",
+    "section": "Price Sensitivity",
+    "text": "Price Sensitivity\nWe’ll look at the price per fluid ounce and see if there are any trends or correlations with the quantity purchased or the brand popularity. To do this, we’ll calculate the average price per fluid ounce for each brand and then visualize how this relates to the average quantity purchased and the total quantity purchased by brand.\nFirst, let’s calculate the average price per fluid ounce for each brand.\n\n# Calculate average price per fluid ounce for each brand\nbrand_price_sensitivity = beer_data.groupby('brand').agg({\n    'price_per_floz': 'mean', \n    'quantity': 'sum'\n}).reset_index()\n\n# Sort by price per fluid ounce\nbrand_price_sensitivity_sorted = brand_price_sensitivity.sort_values('price_per_floz', ascending=True)\n\n# Plotting average price per fluid ounce for each brand and the total quantity purchased\nfig, ax1 = plt.subplots(figsize=(12, 10))\n\ncolor = 'tab:red'\nax1.set_xlabel('Brand')\nax1.set_ylabel('Average Price per Fluid Ounce', color=color)\nax1.bar(brand_price_sensitivity_sorted['brand'], brand_price_sensitivity_sorted['price_per_floz'], color=color)\nax1.tick_params(axis='y', labelcolor=color)\nax1.set_xticklabels(brand_price_sensitivity_sorted['brand'], rotation=90)\n\nax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis\ncolor = 'tab:blue'\nax2.set_ylabel('Total Quantity Purchased', color=color)  # we already handled the x-label with ax1\nax2.plot(brand_price_sensitivity_sorted['brand'], brand_price_sensitivity_sorted['quantity'], color=color)\nax2.tick_params(axis='y', labelcolor=color)\n\nfig.tight_layout()  # otherwise the right y-label is slightly clipped\nplt.title('Average Price per Fluid Ounce & Total Quantity Purchased by Brand')\nplt.show()\n\n\n\n\nIn the visualization, we have a bar graph showing the average price per fluid ounce for each brand (in red) and a line graph showing the total quantity purchased for each brand (in blue). This gives us a sense of whether there’s a relationship between the price and the quantity purchased. The x-axis labels are quite compressed due to the number of brands, but we can still observe trends such as whether lower-priced beers tend to be purchased in larger quantities.\nLastly, let’s move to the fourth analysis:"
+  },
+  {
+    "objectID": "posts/beer-markets/beer-markets.html#promotional-impact",
+    "href": "posts/beer-markets/beer-markets.html#promotional-impact",
+    "title": "Beer Markets",
+    "section": "Promotional Impact",
+    "text": "Promotional Impact\nWe’ll assess the impact of promotions on the quantity of beer purchased. For this analysis, we can calculate the average quantity purchased with and without promotions and visualize the difference. We’ll do this for each brand to see which brands are most affected by promotions.\nLet’s begin this analysis by looking at the average quantity purchased with and without promotions for each brand.\n\n# Calculate average quantity purchased with and without promotions for each brand\npromo_impact = beer_data.groupby(['brand', 'promo']).agg({'quantity':'mean'}).reset_index()\n\n# Pivot the data to have promo and non-promo side by side for each brand\npromo_impact_pivot = promo_impact.pivot(index='brand', columns='promo', values='quantity').reset_index()\npromo_impact_pivot.columns = ['brand', 'non_promo', 'promo']\n\n# Calculate the difference in average quantity purchased between promo and non-promo\npromo_impact_pivot['promo_impact'] = promo_impact_pivot['promo'] - promo_impact_pivot['non_promo']\n\n# Sort by the impact of promo\npromo_impact_pivot_sorted = promo_impact_pivot.sort_values('promo_impact', ascending=False)\n\n# Plotting the difference in average quantity purchased between promo and non-promo for each brand\nplt.figure(figsize=(12, 10))\nsns.barplot(x='promo_impact', y='brand', data=promo_impact_pivot_sorted, palette='viridis')\nplt.title('Impact of Promotions on Average Quantity Purchased by Brand')\nplt.xlabel('Difference in Average Quantity Purchased (Promo - Non-Promo)')\nplt.ylabel('Brand')\nplt.show()\n\n\n\n\nThe bar chart illustrates the impact of promotions on the average quantity of beer purchased by brand. A positive value indicates that, on average, more beer is purchased when there is a promotion compared to when there isn’t. Some brands appear to be significantly more influenced by promotions, with customers buying more when the products are on sale or promotion.\nThis comprehensive analysis has provided insights into purchase patterns, demographic preferences, price sensitivity, and the impact of promotions on beer purchases."
+  },
+  {
+    "objectID": "project-example.html",
+    "href": "project-example.html",
+    "title": "Analysis of the National Park Visits",
+    "section": "",
+    "text": "National Parks are some of the best places for visitors and residents to explore nature and remember historical events. The United States is lucky to be home to several of these parks. The United States National Parks employ over 20,000 individuals. The amount visitors spend at these parks contributes to the economy. There are over 300 National Parks located throughout the United States, including in U.S. territories of the American Samoa, Puerto Rico and Guam. The National Park Service is primarily funded by Congress, however they also gain funds from park entrance fees and other private philanthropies. For years, the National park Service has lacked the funding it needs to properly protect these parks. The first National Park, created in 1872, was Yellowstone in Wyoming. These National Parks need sufficient funding in order to maintain the beauty of the parks and keep them from deteriorating so future generations can continue to enjoy these beautiful places.\nMy goal is to analyze the amount of visitation in these parks each year from 1979 to the most recent data, 2021. My analysis focuses on where these parks are located, by state and region and determine which parks contribute the most to the economy and which parks need to increase visitation. I focused on finding correlations between visitation and location as well as economic contribution and visitor spending. I also wanted to look at what impacts COVID-19 had on visitation.\nI was able to figure out how visitation, park size, park type, and location correlated to the amount of visitor spending and economic contribution. If I had more time, I would’ve liked to gather data on climate change, stocks, and financial patterns to see how these factors could have affected visitation of parks."
+  },
+  {
+    "objectID": "project-example.html#motivation-for-the-project",
+    "href": "project-example.html#motivation-for-the-project",
+    "title": "Analysis of the National Park Visits",
+    "section": "2.1 Motivation For The Project",
+    "text": "2.1 Motivation For The Project\nI want to look at National Park data for my research project. The National Parks are an important part of the United States and function as areas of land that are preserved by the national government. They can have historical elements, or be a place to enjoy the wonderful views they have to offer. I have been to several National Parks myself. I would like to look at the data to :\n\nFind which parks have the most visitors each year and if visitation in the parks is increasing or decreasing.\nIdentify what could have caused these spikes and peaks in visitation.\nExplore which regions of the United States have the most parks.\nDetermine if certain parks contribute more to the economy.\nLook at the impacts COVID-19 had on visitation."
+  },
+  {
+    "objectID": "project-example.html#background-knowledge",
+    "href": "project-example.html#background-knowledge",
+    "title": "Analysis of the National Park Visits",
+    "section": "2.2 Background Knowledge",
+    "text": "2.2 Background Knowledge\nThe National Park Service is primarily funded by Congress, but also is funded through park entrance fees and some private philanthropies. For years the National Park Service has lacked the funding it needs to maintain and protect these national parks. Since the first National Park, Yellowstone, was established in 1872, there have been an additional 400 National Parks with over 20,000 employees added.\nThis research is important, because it can help determine how much funding the National Parks need and which ones need more attention than others. It can help us discover how different issues have affected these National Parks. It can also help us see if certain parks should be closed during certain times of the year in order to have a more efficient and effective budget for these parks.\nWe know that national parks provide peaceful places to enjoy scenery and give wildlife and native plants a safe home which maintains our ecosystem. Economically, national parks create jobs in tourism, park management and capital works and draw visitors to regional areas where they spend their money in local towns."
+  },
+  {
+    "objectID": "project-example.html#summary-of-the-modeling-result",
+    "href": "project-example.html#summary-of-the-modeling-result",
+    "title": "Analysis of the National Park Visits",
+    "section": "2.3 Summary of the Modeling Result",
+    "text": "2.3 Summary of the Modeling Result\nIn my model I was able to figure out how visitation, park size, and park type correlated to the amount of visitor spending and economic contribution of the parks. If I had more time, I would’ve liked to gather data on climate change, stocks, and financial patterns to see how these factors could have affected visitation at parks. I was able to see that visitation decreased in 2020 due to the COVID-19 pandemic."
+  },
+  {
+    "objectID": "project-example.html#all-trails-data",
+    "href": "project-example.html#all-trails-data",
+    "title": "Analysis of the National Park Visits",
+    "section": "3.1 All Trails Data",
+    "text": "3.1 All Trails Data\n\nThis data is from the All Trails website, which is a platform containing all hiking trails located in each National Park. It includes the coordinates of each trail, park name, state name, and city name. Additionally this data provides variables like the average rating, length, elevation gain, and difficulty rating for each trail.\n\n\n3.1.1 Summary Statistics: All Trails\n\n#Read csv file \nalltrails <- read_csv(\"/Users/bchoe/My Drive/suny-geneseo/teaching-materials/lecture-data/national-park-visits.csv\")\n\nRecreation.Visits <- alltrails$`Recreation.Visits`\n\n#first 6 rows \nhead(alltrails)\n\n# A tibble: 6 × 18\n  Park            Unit.Code Park.Type Region State  Year Month Recreation.Visits\n  <chr>           <chr>     <chr>     <chr>  <chr> <dbl> <dbl>             <dbl>\n1 Abraham Lincol… ABLI      National… South… KY     1979     1              1586\n2 Abraham Lincol… ABLI      National… South… KY     1979     2              3036\n3 Abraham Lincol… ABLI      National… South… KY     1979     3              9853\n4 Abraham Lincol… ABLI      National… South… KY     1979     4             33087\n5 Abraham Lincol… ABLI      National… South… KY     1979     5             27838\n6 Abraham Lincol… ABLI      National… South… KY     1979     6             31582\n# ℹ 10 more variables: Non.Recreation.Visits <dbl>, Recreation.Hours <dbl>,\n#   Non.Recreation.Hours <dbl>, Concessioner.Lodging <dbl>,\n#   Concessioner.Camping <dbl>, Tent.Campers <dbl>, RV.Campers <dbl>,\n#   Backcountry.Campers <dbl>, Non.Recreation.Overnight.Stays <dbl>,\n#   Misc..Overnight.Stays <dbl>\n\nrmarkdown::paged_table(alltrails)\n\n\n\n  \n\n\n\n\n#Number of Trails per state\nTrailsperPark <-alltrails%>%\n  group_by(State)%>%\n  summarize(trails = n_distinct(Park))\nTrailsperPark%>%\n  arrange(desc(trails))\n\n# A tibble: 54 × 2\n   State trails\n   <chr>  <int>\n 1 CA        24\n 2 DC        21\n 3 NY        20\n 4 AZ        19\n 5 AK        15\n 6 PA        15\n 7 VA        15\n 8 MA        13\n 9 NM        13\n10 TX        13\n# ℹ 44 more rows\n\n\n\nnvars <- format(round(ncol(alltrails), 0), nsmall = 0, big.mark = \",\")\nnobs <- format(round(nrow(alltrails), 0), nsmall = 0, big.mark = \",\")\n\nThe number of variables is 18; the number of observations is 173,560."
+  },
+  {
+    "objectID": "project-example.html#national-park-service-data",
+    "href": "project-example.html#national-park-service-data",
+    "title": "Analysis of the National Park Visits",
+    "section": "3.2 National Park Service Data",
+    "text": "3.2 National Park Service Data\n\n3.2.1 Public Use Statistics (1979-2021)\n\nPublic Use Statistics give the number of visits per month and year for each National Park. This data includes Recreation and Non-Recreation Visits, as well as the hours the park was open for each group and the number of visitors who camped, stayed overnight, etc.\n\n\nskim(alltrails) %>% \n  select(-n_missing)\n\n\n\n\nData summary\n\n\n\n\nName\n\n\nalltrails\n\n\n\n\nNumber of rows\n\n\n173560\n\n\n\n\nNumber of columns\n\n\n18\n\n\n\n\n_______________________\n\n\n\n\n\n\nColumn type frequency:\n\n\n\n\n\n\ncharacter\n\n\n5\n\n\n\n\nnumeric\n\n\n13\n\n\n\n\n________________________\n\n\n\n\n\n\nGroup variables\n\n\nNone\n\n\n\n\n\nVariable type: character\n\n\n\n\n\nskim_variable\n\n\ncomplete_rate\n\n\nmin\n\n\nmax\n\n\nempty\n\n\nn_unique\n\n\nwhitespace\n\n\n\n\n\n\nPark\n\n\n1\n\n\n7\n\n\n42\n\n\n0\n\n\n371\n\n\n0\n\n\n\n\nUnit.Code\n\n\n1\n\n\n4\n\n\n4\n\n\n0\n\n\n371\n\n\n0\n\n\n\n\nPark.Type\n\n\n1\n\n\n12\n\n\n28\n\n\n0\n\n\n18\n\n\n0\n\n\n\n\nRegion\n\n\n1\n\n\n6\n\n\n16\n\n\n0\n\n\n7\n\n\n0\n\n\n\n\nState\n\n\n1\n\n\n2\n\n\n2\n\n\n0\n\n\n54\n\n\n0\n\n\n\n\n\nVariable type: numeric\n\n\n\n\n\nskim_variable\n\n\ncomplete_rate\n\n\nmean\n\n\nsd\n\n\np0\n\n\np25\n\n\np50\n\n\np75\n\n\np100\n\n\nhist\n\n\n\n\n\n\nYear\n\n\n1\n\n\n2001.07\n\n\n12.23\n\n\n1979\n\n\n1991.00\n\n\n2002\n\n\n2012.00\n\n\n2021\n\n\n▆▆▇▇▇\n\n\n\n\nMonth\n\n\n1\n\n\n6.50\n\n\n3.45\n\n\n1\n\n\n4.00\n\n\n7\n\n\n10.00\n\n\n12\n\n\n▇▅▅▅▇\n\n\n\n\nRecreation.Visits\n\n\n1\n\n\n68150.56\n\n\n170101.01\n\n\n-20331\n\n\n2975.75\n\n\n12979\n\n\n56261.75\n\n\n3912215\n\n\n▇▁▁▁▁\n\n\n\n\nNon.Recreation.Visits\n\n\n1\n\n\n32172.32\n\n\n197210.67\n\n\n-32964\n\n\n0.00\n\n\n17\n\n\n849.00\n\n\n4736394\n\n\n▇▁▁▁▁\n\n\n\n\nRecreation.Hours\n\n\n1\n\n\n315769.47\n\n\n1231398.25\n\n\n-10068\n\n\n4394.00\n\n\n23514\n\n\n137340.00\n\n\n33495321\n\n\n▇▁▁▁▁\n\n\n\n\nNon.Recreation.Hours\n\n\n1\n\n\n32172.32\n\n\n197210.67\n\n\n-32964\n\n\n0.00\n\n\n17\n\n\n849.00\n\n\n4736394\n\n\n▇▁▁▁▁\n\n\n\n\nConcessioner.Lodging\n\n\n1\n\n\n854.06\n\n\n7049.03\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n191649\n\n\n▇▁▁▁▁\n\n\n\n\nConcessioner.Camping\n\n\n1\n\n\n256.47\n\n\n3711.07\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n171555\n\n\n▇▁▁▁▁\n\n\n\n\nTent.Campers\n\n\n1\n\n\n875.10\n\n\n4902.01\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n179369\n\n\n▇▁▁▁▁\n\n\n\n\nRV.Campers\n\n\n1\n\n\n730.38\n\n\n3820.04\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n134586\n\n\n▇▁▁▁▁\n\n\n\n\nBackcountry.Campers\n\n\n1\n\n\n483.34\n\n\n3170.36\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n185844\n\n\n▇▁▁▁▁\n\n\n\n\nNon.Recreation.Overnight.Stays\n\n\n1\n\n\n79.97\n\n\n1235.54\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n50086\n\n\n▇▁▁▁▁\n\n\n\n\nMisc..Overnight.Stays\n\n\n1\n\n\n567.66\n\n\n8362.53\n\n\n0\n\n\n0.00\n\n\n0\n\n\n0.00\n\n\n471616\n\n\n▇▁▁▁▁\n\n\n\n\n\n\n\n\n#Total Visits per Year in each Region \nalltrails%>%\n  group_by(Year, Region)%>%\n  summarize(Total_Visits = n_distinct(Recreation.Visits))\n\n# A tibble: 301 × 3\n# Groups:   Year [43]\n    Year Region           Total_Visits\n   <dbl> <chr>                   <int>\n 1  1979 Alaska                     46\n 2  1979 Intermountain             842\n 3  1979 Midwest                   432\n 4  1979 National Capital          276\n 5  1979 Northeast                 548\n 6  1979 Pacific West              456\n 7  1979 Southeast                 537\n 8  1980 Alaska                     45\n 9  1980 Intermountain             828\n10  1980 Midwest                   438\n# ℹ 291 more rows"
+  },
+  {
+    "objectID": "project-example.html#economic-contribution-of-national-park-visitor-spending",
+    "href": "project-example.html#economic-contribution-of-national-park-visitor-spending",
+    "title": "Analysis of the National Park Visits",
+    "section": "3.3 Economic Contribution of National Park Visitor Spending",
+    "text": "3.3 Economic Contribution of National Park Visitor Spending\n\n3.3.1 Visitor Spending Data\n\nGives us information on the number of visitors in each park and how much they spend in each National Park, the number of jobs provided by parks, and home much income workers make.\n\n\nVisitor_Spending_2022 <- read_csv(\"/Users/bchoe/My Drive/suny-geneseo/teaching-materials/lecture-data/national-park-spending.csv\")\nhead(Visitor_Spending_2022)\n\n# A tibble: 6 × 5\n  `Park Unit`                Total Recreation Vis…¹ Total Visitor Spendi…²  Jobs\n  <chr>                                       <dbl>                  <dbl> <dbl>\n1 Abraham Lincoln Birthplac…                 265707               17545000   266\n2 Acadia NP                                 3970260              478821000  6695\n3 Adams NHP                                   12848                 849000    11\n4 African Burial Ground NM                    29743                1964000    21\n5 Agate Fossil Beds NM                        16357                1378000    18\n6 Alagnak WR                                    184                   7000     0\n# ℹ abbreviated names: ¹​`Total Recreation Visits`,\n#   ²​`Total Visitor Spending ($2022)`\n# ℹ 1 more variable: `Economic Output ($2022)` <dbl>\n\nskim(Visitor_Spending_2022) %>% \n  select(-n_missing)\n\n\n\n\nData summary\n\n\n\n\nName\n\n\nVisitor_Spending_2022\n\n\n\n\nNumber of rows\n\n\n392\n\n\n\n\nNumber of columns\n\n\n5\n\n\n\n\n_______________________\n\n\n\n\n\n\nColumn type frequency:\n\n\n\n\n\n\ncharacter\n\n\n1\n\n\n\n\nnumeric\n\n\n4\n\n\n\n\n________________________\n\n\n\n\n\n\nGroup variables\n\n\nNone\n\n\n\n\n\nVariable type: character\n\n\n\n\n\nskim_variable\n\n\ncomplete_rate\n\n\nmin\n\n\nmax\n\n\nempty\n\n\nn_unique\n\n\nwhitespace\n\n\n\n\n\n\nPark Unit\n\n\n1\n\n\n7\n\n\n56\n\n\n0\n\n\n392\n\n\n0\n\n\n\n\n\nVariable type: numeric\n\n\n\n\n\nskim_variable\n\n\ncomplete_rate\n\n\nmean\n\n\nsd\n\n\np0\n\n\np25\n\n\np50\n\n\np75\n\n\np100\n\n\nhist\n\n\n\n\n\n\nTotal Recreation Visits\n\n\n1\n\n\n795882.65\n\n\n1764307.99\n\n\n0\n\n\n37316.75\n\n\n173137\n\n\n717227.8\n\n\n15711004\n\n\n▇▁▁▁▁\n\n\n\n\nTotal Visitor Spending ($2022)\n\n\n1\n\n\n60937744.90\n\n\n169795334.39\n\n\n0\n\n\n2565500.00\n\n\n11432500\n\n\n47779500.0\n\n\n2110462000\n\n\n▇▁▁▁▁\n\n\n\n\nJobs\n\n\n1\n\n\n802.48\n\n\n2391.88\n\n\n0\n\n\n32.00\n\n\n153\n\n\n593.5\n\n\n32590\n\n\n▇▁▁▁▁\n\n\n\n\nEconomic Output ($2022)\n\n\n1\n\n\n84762206.63\n\n\n244675698.90\n\n\n0\n\n\n3359500.00\n\n\n15730500\n\n\n61224500.0\n\n\n3262390000\n\n\n▇▁▁▁▁"
+  },
+  {
+    "objectID": "project-example.html#how-many-parks-are-in-the-united-states",
+    "href": "project-example.html#how-many-parks-are-in-the-united-states",
+    "title": "Analysis of the National Park Visits",
+    "section": "5.1 How many Parks are in the United States?",
+    "text": "5.1 How many Parks are in the United States?\n\ntotal_park_count <-alltrails%>%\n  group_by(Year)%>%\n  summarize(p = n_distinct(Park))\nuspark <- ggplot(data = total_park_count, \n       mapping = aes(x = Year, y = p))+ \n  geom_line(color=\"#69b3a2\", size=2)+ \n  ylim(100, 400)+\n  ggtitle(\"Number of National Parks in the United States \\n(1979 - 2021)\")+\n  xlab(\"Year\")+\n  ylab(\"Total Number of Parks\")\nuspark\n\n\n\n\nThe number of Parks in the United States has increased from 268 in 1979 to 368 in 2021."
+  },
+  {
+    "objectID": "project-example.html#number-of-parks-per-region",
+    "href": "project-example.html#number-of-parks-per-region",
+    "title": "Analysis of the National Park Visits",
+    "section": "5.2 Number of Parks Per Region",
+    "text": "5.2 Number of Parks Per Region\n\nnumparks_region<-alltrails%>%\n  group_by(Region)%>%\n  summarize(Parks = n_distinct(Park))\n\nnumparks_region%>%arrange(desc(Parks))\n\n# A tibble: 7 × 2\n  Region           Parks\n  <chr>            <int>\n1 Intermountain       80\n2 Northeast           72\n3 Southeast           62\n4 Pacific West        54\n5 Midwest             53\n6 National Capital    35\n7 Alaska              15\n\n\nThe number of parks found in each region.\nTo see a map of the Regions click here."
+  },
+  {
+    "objectID": "project-example.html#visits-by-region",
+    "href": "project-example.html#visits-by-region",
+    "title": "Analysis of the National Park Visits",
+    "section": "5.3 Visits By Region",
+    "text": "5.3 Visits By Region\n\nregionvis <- alltrails%>%\n  group_by(Region, Year)%>%\n  summarize(visits = sum(Recreation.Visits))\nregionvis\n\n# A tibble: 301 × 3\n# Groups:   Region [7]\n   Region  Year  visits\n   <chr>  <dbl>   <dbl>\n 1 Alaska  1979  421985\n 2 Alaska  1980  395933\n 3 Alaska  1981  441763\n 4 Alaska  1982  625260\n 5 Alaska  1983  661884\n 6 Alaska  1984  780822\n 7 Alaska  1985  885359\n 8 Alaska  1986 1034520\n 9 Alaska  1987 1061067\n10 Alaska  1988 1117711\n# ℹ 291 more rows\n\nggplot(data = regionvis, \n       mapping = aes(x = Year, y =visits, fill = Region))+\n  geom_col()\n\n\n\nfaceted_region <- ggplot(data = alltrails, \n                         mapping = aes(x = Year, y = Recreation.Visits))+\n  geom_point(alpha = 0.2)+\n  facet_wrap(~Region, ncol = 3)\nfaceted_region+\n  theme_bw()+ \n  ggtitle(\"Recreation Visits By Region\")+ \n  ylab(\"Recreation Visits\")+ \n  xlab(\"\")+\n  scale_y_continuous(labels = comma)"
+  },
+  {
+    "objectID": "project-example.html#number-of-parks-per-state-and-region",
+    "href": "project-example.html#number-of-parks-per-state-and-region",
+    "title": "Analysis of the National Park Visits",
+    "section": "5.4 Number of Parks per State and Region",
+    "text": "5.4 Number of Parks per State and Region\n\npark_state <- alltrails%>%\n  group_by(State, Region)%>%\n  summarize(park = n_distinct(Park))\npark_state%>% arrange(desc(park))%>%ggplot(data = park_state, \n       mapping = aes(x = State, y = park, color = Region))+ \n  geom_point()+ \n  theme(axis.text.x = element_text(angle = 90))+ \n  labs(x = \"State\", y = \"Park Count\", \n       title = \"Amount of Parks by State and Region\")"
+  },
+  {
+    "objectID": "project-example.html#number-of-trails-per-park",
+    "href": "project-example.html#number-of-trails-per-park",
+    "title": "Analysis of the National Park Visits",
+    "section": "5.5 Number of Trails Per Park",
+    "text": "5.5 Number of Trails Per Park\n\nTrailsperPark <-alltrails%>%\n  group_by(State)%>%\n  summarize(trails = n_distinct(Park))%>%\n  arrange(desc(trails))\nc <- ggplot(TrailsperPark, aes(x = State, \n                               y = trails))+\n  geom_segment(aes(x = State, xend = State, y = 0, yend = trails),\n               color = \"skyblue\") +\n  geom_point(color = \"blue\", size = 4, alpha = 0.6)+\n  theme_light()+\n  coord_flip()+\n  theme(panel.border = element_blank(),\n        axis.ticks.y = element_blank())+\n  ggtitle(\"Number of Trails in each State\")+\n  xlab(\"\")+\n  ylab(\"Number of Trails\")\nc"
+  },
+  {
+    "objectID": "project-example.html#visitation-in-2021",
+    "href": "project-example.html#visitation-in-2021",
+    "title": "Analysis of the National Park Visits",
+    "section": "5.6 Visitation in 2021",
+    "text": "5.6 Visitation in 2021\n\nlastyear <- alltrails%>%\n  filter(Year == 2021)%>%\n  select(Year, Month, Park, Region, Recreation.Visits)\nggplot(data = lastyear, \n       mapping = aes(x = Month, y = Recreation.Visits, fill = Region))+\n  geom_bar(position = \"stack\", stat = \"identity\")+\n  scale_x_continuous(breaks = breaks_width(1))+\n  theme_classic()+\n  scale_y_continuous(labels = label_number(suffix = \"K\", scale = 1e-6))+\n  ylab(\"Recreation Visit (Thousands) \")+ \n  xlab(\"Month\")+\n  ggtitle(\"Visitation By Month in 2021\")"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "YOUR NAME",
+    "section": "",
+    "text": "Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "YOUR NAME",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Business Administration"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "YOUR NAME",
+    "section": "Experience",
+    "text": "Experience\nStarbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024"
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "Insightful Analytics",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n8 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n0 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "DANL Project",
+    "section": "",
+    "text": "About this project 👏\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "project.html#summary-statistics",
+    "href": "project.html#summary-statistics",
+    "title": "DANL Project",
+    "section": "2.1 Summary Statistics",
+    "text": "2.1 Summary Statistics\n\nmpg <- ggplot2::mpg\n\n\n\n\n  \n\n\n\nskim(mpg) %>% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmpg\n\n\nNumber of rows\n234\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n6\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nmanufacturer\n1\n4\n10\n0\n15\n0\n\n\nmodel\n1\n2\n22\n0\n38\n0\n\n\ntrans\n1\n8\n10\n0\n10\n0\n\n\ndrv\n1\n1\n1\n0\n3\n0\n\n\nfl\n1\n1\n1\n0\n5\n0\n\n\nclass\n1\n3\n10\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ndispl\n1\n3.47\n1.29\n1.6\n2.4\n3.3\n4.6\n7\n▇▆▆▃▁\n\n\nyear\n1\n2003.50\n4.51\n1999.0\n1999.0\n2003.5\n2008.0\n2008\n▇▁▁▁▇\n\n\ncyl\n1\n5.89\n1.61\n4.0\n4.0\n6.0\n8.0\n8\n▇▁▇▁▇\n\n\ncty\n1\n16.86\n4.26\n9.0\n14.0\n17.0\n19.0\n35\n▆▇▃▁▁\n\n\nhwy\n1\n23.44\n5.95\n12.0\n18.0\n24.0\n27.0\n44\n▅▅▇▁▁"
+  },
+  {
+    "objectID": "project.html#mpg-and-a-type-of-cars",
+    "href": "project.html#mpg-and-a-type-of-cars",
+    "title": "DANL Project",
+    "section": "2.2 MPG and a Type of Cars",
+    "text": "2.2 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
+  }
+]
